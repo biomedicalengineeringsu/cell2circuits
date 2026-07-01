@@ -5,6 +5,7 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Navigation />
             <main>{children}</main>
             <Footer />
+            <ScrollToTop />
           </LenisProvider>
         </ThemeProvider>
       </body>
