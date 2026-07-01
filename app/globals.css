@@ -1,0 +1,441 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   THEME VARIABLES
+   :root  = light mode (default, no .dark class on <html>)
+   .dark  = dark mode  (.dark class on <html>)
+   ============================================================ */
+:root {
+  /* Shadcn / Radix color tokens — light mode */
+  --background: 214 60% 98%;         /* very light blue-white — calming overcast feel */
+  --foreground: 215 40% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 215 40% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 40% 12%;
+  --primary: 217 91% 60%;            /* blue-500 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 213 27% 93%;
+  --secondary-foreground: 215 35% 15%;
+  --muted: 213 27% 93%;
+  --muted-foreground: 215 16% 46%;
+  --accent: 213 27% 93%;
+  --accent-foreground: 215 35% 15%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 22% 88%;
+  --input: 214 22% 88%;
+  --ring: 217 91% 60%;               /* blue-500 */
+  --radius: 0.75rem;
+
+  /* Section backgrounds — soft blue-white tint */
+  --section-bg-1: #f4f8ff;
+  --section-bg-2: #eaf2fd;
+  --section-bg-footer: #0f172a;
+
+  /* Semantic text colors */
+  --color-heading: #0f1e30;
+  --color-body: #3d5a75;
+  --color-muted: #5a7a94;
+  --color-subtle: #7a98b0;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(59, 130, 246, 0.10);
+  --glass-shadow: 0 2px 20px rgba(59, 130, 246, 0.06);
+
+  /* Nav */
+  --nav-scrolled-bg: rgba(244, 248, 255, 0.92);
+  --nav-scrolled-border: rgba(59, 130, 246, 0.10);
+
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-syne: 'Syne', system-ui, sans-serif;
+}
+
+.dark {
+  /* Shadcn / Radix color tokens — dark mode */
+  --background: 214 42% 8%;          /* slightly warmer deep navy */
+  --foreground: 210 35% 90%;         /* softer than pure white */
+  --card: 214 38% 11%;
+  --card-foreground: 210 35% 90%;
+  --popover: 214 38% 11%;
+  --popover-foreground: 210 35% 90%;
+  --primary: 217 91% 60%;            /* blue-500 */
+  --primary-foreground: 214 42% 8%;
+  --secondary: 214 35% 16%;
+  --secondary-foreground: 210 35% 90%;
+  --muted: 214 35% 16%;
+  --muted-foreground: 215 22% 58%;
+  --accent: 214 35% 16%;
+  --accent-foreground: 210 35% 90%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 35% 90%;
+  --border: 214 35% 16%;
+  --input: 214 35% 16%;
+  --ring: 217 91% 60%;               /* blue-500 */
+
+  /* Section backgrounds — warmer, less stark navy */
+  --section-bg-1: #0e1c2e;
+  --section-bg-2: #091726;
+  --section-bg-footer: #06101e;
+
+  /* Semantic text colors — reduced glare */
+  --color-heading: #dce8f5;          /* soft blue-white, less glaring than pure white */
+  --color-body: #8baabb;             /* muted blue-gray */
+  --color-muted: #5a7a94;
+  --color-subtle: #3d5972;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-border: rgba(96, 165, 250, 0.12);  /* blue-400 tinted */
+  --glass-shadow: none;
+
+  /* Nav */
+  --nav-scrolled-bg: rgba(14, 28, 46, 0.88);
+  --nav-scrolled-border: rgba(59, 130, 246, 0.18);
+}
+
+/* ============================================================
+   BASE RESETS
+   ============================================================ */
+* {
+  border-color: hsl(var(--border));
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+
+::-webkit-scrollbar-track {
+  background: var(--section-bg-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #60a5fa, #2dd4bf);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   GLASS MORPHISM — theme-aware
+   ============================================================ */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-dark {
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--nav-scrolled-border);
+}
+
+/* ============================================================
+   ADAPTIVE TEXT UTILITIES (semantic, theme-aware)
+   ============================================================ */
+@layer utilities {
+  .text-adaptive-heading { color: var(--color-heading); }
+  .text-adaptive-body    { color: var(--color-body); }
+  .text-adaptive-muted   { color: var(--color-muted); }
+  .text-adaptive-subtle  { color: var(--color-subtle); }
+}
+
+/* ============================================================
+   GRADIENT TEXT (always colored)
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #60a5fa, #2dd4bf, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #93c5fd, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   LIGHT MODE — COMPREHENSIVE TEXT FIX
+   Strategy:
+     Step 1 – All .text-white → dark heading color (catches everything).
+     Step 2 – Restore white when the ELEMENT ITSELF has a colored bg/gradient
+              (gradient buttons, colored badges, icon dots).
+     Step 3 – Fix .text-slate-* to be readable on white.
+     Step 4 – Darken accent colors (.text-sky-400 etc.) for WCAG contrast.
+   ============================================================ */
+html:not(.dark) {
+  color-scheme: light;
+}
+
+/* ---- Step 1: Global text-white → readable dark ---- */
+html:not(.dark) .text-white {
+  color: var(--color-heading) !important;
+}
+
+/* ---- Exceptions: sections that always have dark backgrounds in both modes ---- */
+/* Footer & Hero (#home) always dark — white text stays white */
+html:not(.dark) footer .text-white,
+html:not(.dark) #home .text-white {
+  color: white !important;
+}
+
+/* Hero section always uses dark bg regardless of theme (showcase design) */
+html:not(.dark) #home {
+  background: linear-gradient(160deg, #06101e 0%, #091828 40%, #0c1d38 70%, #07101e 100%) !important;
+}
+
+/* Hero is always dark — force ALL text inside it to stay light regardless of mode */
+html:not(.dark) #home .text-slate-300 { color: rgba(255,255,255,0.78) !important; }
+html:not(.dark) #home .text-slate-400 { color: rgba(255,255,255,0.58) !important; }
+html:not(.dark) #home .text-slate-500 { color: rgba(255,255,255,0.48) !important; }
+html:not(.dark) #home .text-slate-600 { color: rgba(255,255,255,0.40) !important; }
+
+/* ---- Step 2: Elements with THEIR OWN solid colored background stay white ---- */
+/* gradient buttons / spans that carry from-* AND text-white together */
+html:not(.dark) .text-white[class*="from-sky"],
+html:not(.dark) .text-white[class*="from-teal"],
+html:not(.dark) .text-white[class*="from-green"],
+html:not(.dark) .text-white[class*="from-emerald"],
+html:not(.dark) .text-white[class*="from-rose"],
+html:not(.dark) .text-white[class*="from-purple"],
+html:not(.dark) .text-white[class*="from-red"],
+html:not(.dark) .text-white[class*="from-yellow"],
+html:not(.dark) .text-white[class*="from-orange"],
+html:not(.dark) .text-white[class*="from-violet"],
+html:not(.dark) .text-white[class*="from-cyan"],
+/* solid bg-color elements */
+html:not(.dark) .text-white[class*="bg-sky-5"],
+html:not(.dark) .text-white[class*="bg-sky-4"],
+html:not(.dark) .text-white[class*="bg-teal-5"],
+html:not(.dark) .text-white[class*="bg-teal-4"],
+html:not(.dark) .text-white[class*="bg-emerald-5"],
+html:not(.dark) .text-white[class*="bg-green-5"],
+html:not(.dark) .text-white[class*="bg-rose-5"],
+html:not(.dark) .text-white[class*="bg-red-5"],
+html:not(.dark) .text-white[class*="bg-purple-5"],
+html:not(.dark) .text-white[class*="bg-violet-5"],
+html:not(.dark) .text-white[class*="bg-yellow-5"],
+html:not(.dark) .text-white[class*="bg-orange-5"],
+html:not(.dark) .text-white[class*="bg-cyan-5"] {
+  color: white !important;
+}
+
+/* ---- Step 3: slate-* text → readable on white backgrounds ---- */
+html:not(.dark) .text-slate-100 { color: #0f172a !important; }  /* → slate-900 */
+html:not(.dark) .text-slate-200 { color: #1e293b !important; }  /* → slate-800 */
+html:not(.dark) .text-slate-300 { color: #374151 !important; }  /* → gray-700  */
+html:not(.dark) .text-slate-400 { color: #4b5563 !important; }  /* → gray-600  */
+html:not(.dark) .text-slate-500 { color: #6b7280 !important; }  /* → gray-500  */
+html:not(.dark) .text-slate-600 { color: #4b5563 !important; }  /* stay readable */
+
+/* ---- Step 4: Accent colors → darker shade for WCAG contrast on white ---- */
+/* sky-* now maps to blue-* (tailwind.config remapping) */
+html:not(.dark) .text-sky-400     { color: #1d4ed8 !important; }  /* blue-700    */
+html:not(.dark) .text-sky-300     { color: #2563eb !important; }  /* blue-600    */
+html:not(.dark) .text-teal-400    { color: #0f766e !important; }  /* teal-700    */
+html:not(.dark) .text-teal-300    { color: #0d9488 !important; }  /* teal-600    */
+html:not(.dark) .text-emerald-400 { color: #059669 !important; }  /* emerald-600 */
+html:not(.dark) .text-emerald-300 { color: #10b981 !important; }  /* emerald-500 */
+html:not(.dark) .text-green-400   { color: #16a34a !important; }  /* green-600   */
+html:not(.dark) .text-green-300   { color: #15803d !important; }  /* green-700   */
+html:not(.dark) .text-rose-400    { color: #e11d48 !important; }  /* rose-600    */
+html:not(.dark) .text-rose-300    { color: #be123c !important; }  /* rose-700    */
+html:not(.dark) .text-purple-400  { color: #7c3aed !important; }  /* purple-700  */
+html:not(.dark) .text-purple-300  { color: #6d28d9 !important; }  /* purple-800  */
+html:not(.dark) .text-violet-400  { color: #6d28d9 !important; }  /* violet-700  */
+html:not(.dark) .text-violet-300  { color: #5b21b6 !important; }  /* violet-800  */
+html:not(.dark) .text-yellow-400  { color: #b45309 !important; }  /* amber-700   */
+html:not(.dark) .text-yellow-300  { color: #92400e !important; }  /* amber-800   */
+html:not(.dark) .text-orange-400  { color: #c2410c !important; }  /* orange-700  */
+html:not(.dark) .text-orange-300  { color: #9a3412 !important; }  /* orange-800  */
+html:not(.dark) .text-red-400     { color: #dc2626 !important; }  /* red-600     */
+html:not(.dark) .text-red-300     { color: #b91c1c !important; }  /* red-700     */
+html:not(.dark) .text-cyan-400    { color: #0891b2 !important; }  /* cyan-600    */
+html:not(.dark) .text-cyan-300    { color: #0e7490 !important; }  /* cyan-700    */
+html:not(.dark) .text-pink-400    { color: #db2777 !important; }  /* pink-600    */
+html:not(.dark) .text-pink-300    { color: #be185d !important; }  /* pink-700    */
+html:not(.dark) .text-indigo-400  { color: #4338ca !important; }  /* indigo-700  */
+html:not(.dark) .text-indigo-300  { color: #3730a3 !important; }  /* indigo-800  */
+
+/* ---- Step 5: hover & group-hover → keep text readable on light backgrounds ---- */
+
+/* hover:text-white → dark heading color so it stays visible on white cards */
+html:not(.dark) .hover\:text-white:hover { color: var(--color-heading) !important; }
+
+/* group-hover:text-white → same fix */
+html:not(.dark) .group:hover .group-hover\:text-white { color: var(--color-heading) !important; }
+
+/* group-hover light-color accents → darken them (they're near-invisible on white) */
+html:not(.dark) .group:hover .group-hover\:text-sky-300     { color: #1d4ed8 !important; }
+html:not(.dark) .group:hover .group-hover\:text-sky-400     { color: #1d4ed8 !important; }
+html:not(.dark) .group:hover .group-hover\:text-teal-300    { color: #0f766e !important; }
+html:not(.dark) .group:hover .group-hover\:text-teal-400    { color: #0f766e !important; }
+html:not(.dark) .group:hover .group-hover\:text-emerald-300 { color: #059669 !important; }
+html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669 !important; }
+html:not(.dark) .group:hover .group-hover\:text-rose-300    { color: #be123c !important; }
+html:not(.dark) .group:hover .group-hover\:text-rose-400    { color: #e11d48 !important; }
+html:not(.dark) .group:hover .group-hover\:text-yellow-300  { color: #92400e !important; }
+html:not(.dark) .group:hover .group-hover\:text-yellow-400  { color: #b45309 !important; }
+html:not(.dark) .group:hover .group-hover\:text-orange-300  { color: #9a3412 !important; }
+html:not(.dark) .group:hover .group-hover\:text-orange-400  { color: #c2410c !important; }
+html:not(.dark) .group:hover .group-hover\:text-purple-300  { color: #6d28d9 !important; }
+html:not(.dark) .group:hover .group-hover\:text-purple-400  { color: #7c3aed !important; }
+html:not(.dark) .group:hover .group-hover\:text-violet-300  { color: #5b21b6 !important; }
+html:not(.dark) .group:hover .group-hover\:text-violet-400  { color: #6d28d9 !important; }
+
+/* hover: color variants (non-white) → same darkening treatment */
+html:not(.dark) .hover\:text-sky-400:hover     { color: #1d4ed8 !important; }
+html:not(.dark) .hover\:text-teal-400:hover    { color: #0f766e !important; }
+html:not(.dark) .hover\:text-emerald-400:hover { color: #059669 !important; }
+
+/* Smooth background transitions */
+html:not(.dark) section,
+html:not(.dark) footer,
+html:not(.dark) nav {
+  transition: background-color 0.3s ease;
+}
+
+/* ============================================================
+   GLOWS & DECORATIVE
+   ============================================================ */
+.glow-blue  { box-shadow: 0 0 30px rgba(59, 130, 246, 0.28); }
+.glow-teal  { box-shadow: 0 0 30px rgba(20, 184, 166, 0.28); }
+.text-glow  { text-shadow: 0 0 28px rgba(59, 130, 246, 0.40); }
+
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+.section-padding {
+  padding: 5rem 0;
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 0;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes ecg-draw {
+  0%   { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.ecg-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: ecg-draw 3s linear infinite;
+}
+
+@keyframes dna-rotate {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%      { transform: scale(1.1); }
+  28%      { transform: scale(1); }
+  42%      { transform: scale(1.1); }
+  70%      { transform: scale(1); }
+}
+.heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px)   rotate(0deg); }
+  33%      { transform: translateY(-15px) rotate(5deg); }
+  66%      { transform: translateY(-8px)  rotate(-3deg); }
+}
+.floating { animation: floating 6s ease-in-out infinite; }
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ============================================================
+   CARD EFFECTS
+   ============================================================ */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.14);
+}
+
+/* Light mode card hover — softer shadow */
+html:not(.dark) .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.08);
+}
+
+/* ============================================================
+   GRADIENT BORDERS
+   ============================================================ */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(96,165,250,0.40), rgba(45,212,191,0.40), rgba(167,139,250,0.25));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
+.counter-value { font-variant-numeric: tabular-nums; }
+
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.22);
+  color: white;
+}

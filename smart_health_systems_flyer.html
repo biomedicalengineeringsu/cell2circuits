@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Health Systems Workshop Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --navy: #0a1a26;
+    --navy-deep: #061019;
+    --teal: #123240;
+    --gold: #d9b45c;
+    --gold-bright: #f0cf7d;
+    --cream: #f3ede0;
+    --circuit-green: #6fd3a8;
+    --line: rgba(217,180,92,0.35);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background: var(--navy-deep);
+    font-family:'Inter', sans-serif;
+    display:flex;
+    justify-content:center;
+    padding: 24px 12px;
+  }
+
+  .flyer{
+    position:relative;
+    width: 1000px;
+    max-width:100%;
+    background:
+      radial-gradient(circle at 82% 8%, rgba(111,211,168,0.10), transparent 40%),
+      radial-gradient(circle at 10% 90%, rgba(217,180,92,0.10), transparent 45%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 70%);
+    border: 1px solid rgba(217,180,92,0.4);
+    border-radius: 6px;
+    overflow:hidden;
+    color: var(--cream);
+  }
+
+  /* Signature: interlocking helix-to-circuit motif running down the right edge */
+  .motif{
+    position:absolute;
+    top:0; right:0;
+    width: 220px;
+    height:100%;
+    opacity:0.55;
+    pointer-events:none;
+  }
+
+  .header{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    padding: 22px 32px 0 32px;
+  }
+
+  .badge{
+    width:52px; height:52px;
+    border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .badge svg{width:30px; height:30px;}
+
+  .header-text{
+    font-family:'Inter';
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: var(--gold-bright);
+  }
+  .header-text .sub{
+    font-size:10px;
+    letter-spacing:1.5px;
+    color: rgba(243,237,224,0.55);
+    margin-top:2px;
+  }
+
+  .titleblock{
+    text-align:center;
+    padding: 18px 60px 6px 60px;
+    position:relative;
+    z-index:2;
+  }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color: var(--circuit-green);
+    margin-bottom:10px;
+  }
+
+  h1{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:700;
+    font-size: 42px;
+    line-height:1.15;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 45%, var(--circuit-green) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  h2{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:19px;
+    color: var(--cream);
+    margin-top:8px;
+    opacity:0.92;
+  }
+
+  .divider{
+    width:120px; height:1px;
+    margin: 16px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .blurb{
+    max-width:640px;
+    margin: 0 auto;
+    font-size:14.5px;
+    line-height:1.6;
+    color: rgba(243,237,224,0.85);
+    padding-bottom: 6px;
+  }
+
+  .body-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 26px 40px 8px 40px;
+    position:relative;
+    z-index:2;
+  }
+
+  .track{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(217,180,92,0.25);
+    border-radius:8px;
+    padding: 18px 20px;
+  }
+
+  .track-day{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: var(--gold-bright);
+    margin-bottom:4px;
+  }
+
+  .track h3{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:20px;
+    color: var(--cream);
+    margin-bottom:12px;
+  }
+
+  .track.bio h3{ border-bottom:1px solid rgba(111,211,168,0.4); padding-bottom:8px;}
+  .track.elec h3{ border-bottom:1px solid rgba(217,180,92,0.4); padding-bottom:8px;}
+
+  .track ul{ list-style:none; }
+  .track li{
+    font-size:14px;
+    padding:5px 0;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    color: rgba(243,237,224,0.92);
+  }
+  .track.bio li::before{ content:"●"; color: var(--circuit-green); font-size:8px; }
+  .track.elec li::before{ content:"●"; color: var(--gold); font-size:8px; }
+
+  .info-strip{
+    display:flex;
+    justify-content:center;
+    gap: 28px;
+    flex-wrap:wrap;
+    padding: 18px 32px 34px 32px;
+    font-size:13.5px;
+  }
+  .info-strip .item{
+    display:flex; align-items:center; gap:8px;
+    color: var(--cream);
+  }
+  .info-strip .item b{ color: var(--gold-bright); }
+
+  .footer{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 20px;
+    padding: 22px 40px 30px 40px;
+    border-top: 1px solid rgba(217,180,92,0.25);
+    margin-top: 14px;
+    align-items:start;
+  }
+
+  .coord{
+    font-size:13.5px;
+    line-height:1.7;
+  }
+  .coord .label{
+    font-size:10.5px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: var(--circuit-green);
+    display:block;
+    margin-bottom:2px;
+  }
+  .coord .name{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:17px;
+    color: var(--gold-bright);
+    margin-bottom:10px;
+    display:block;
+  }
+
+  .contact-block{ margin-top:8px; }
+  .contact-block .role{
+    font-size:11px; color: rgba(243,237,224,0.55); letter-spacing:1px;
+  }
+  .contact-block .cname{
+    font-size:14px; color: var(--cream); font-weight:600;
+  }
+
+  .qr-side{
+    text-align:center;
+  }
+  .qr-side .label{
+    font-size:10.5px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: var(--circuit-green);
+    margin-bottom:8px;
+  }
+  .qr-box{
+    width:96px; height:96px;
+    margin:0 auto;
+    background: repeating-linear-gradient(45deg, #0d0d0d 0 4px, #1a1a1a 4px 8px);
+    border: 3px solid var(--cream);
+    border-radius:4px;
+    opacity:0.85;
+  }
+  .qr-note{
+    font-size:10px;
+    color: rgba(243,237,224,0.5);
+    margin-top:6px;
+  }
+
+  @media (max-width: 640px){
+    h1{ font-size:28px; }
+    .body-grid{ grid-template-columns: 1fr; }
+    .footer{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="flyer">
+
+  <svg class="motif" viewBox="0 0 220 700" xmlns="http://www.w3.org/2000/svg">
+    <!-- top half: DNA helix -->
+    <g stroke="#d9b45c" stroke-width="1.4" fill="none" opacity="0.6">
+      <path d="M60,0 C120,45 20,90 60,135 C120,180 20,225 60,270 C120,315 20,340 60,360"/>
+      <path d="M120,0 C60,45 160,90 120,135 C60,180 160,225 120,270 C60,315 160,340 120,360"/>
+    </g>
+    <g stroke="#d9b45c" stroke-width="1" opacity="0.4">
+      <line x1="60" y1="10" x2="120" y2="10"/>
+      <line x1="72" y1="40" x2="108" y2="40"/>
+      <line x1="40" y1="70" x2="140" y2="70"/>
+      <line x1="72" y1="100" x2="108" y2="100"/>
+      <line x1="60" y1="135" x2="120" y2="135"/>
+      <line x1="72" y1="165" x2="108" y2="165"/>
+      <line x1="40" y1="200" x2="140" y2="200"/>
+      <line x1="72" y1="235" x2="108" y2="235"/>
+      <line x1="60" y1="270" x2="120" y2="270"/>
+      <line x1="72" y1="300" x2="108" y2="300"/>
+      <line x1="60" y1="330" x2="120" y2="330"/>
+    </g>
+    <!-- transition node -->
+    <circle cx="90" cy="360" r="5" fill="#6fd3a8"/>
+    <!-- bottom half: circuit traces -->
+    <g stroke="#6fd3a8" stroke-width="1.4" fill="none" opacity="0.55">
+      <path d="M90,360 L90,410 L150,410 L150,460"/>
+      <path d="M90,410 L40,410 L40,470 L90,470 L90,520"/>
+      <path d="M150,460 L150,520 L90,520 L90,580 L150,580 L150,640"/>
+      <path d="M40,470 L40,560 L100,560"/>
+    </g>
+    <g fill="#6fd3a8" opacity="0.7">
+      <circle cx="150" cy="460" r="3"/>
+      <circle cx="90" cy="520" r="3"/>
+      <circle cx="40" cy="470" r="3"/>
+      <circle cx="150" cy="580" r="3"/>
+      <circle cx="100" cy="560" r="3"/>
+      <circle cx="150" cy="640" r="3"/>
+    </g>
+    <g stroke="#6fd3a8" stroke-width="1" opacity="0.3">
+      <rect x="130" y="450" width="40" height="20" rx="2" fill="none"/>
+      <rect x="20" y="550" width="40" height="20" rx="2" fill="none"/>
+    </g>
+  </svg>
+
+  <div class="header">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#d9b45c" stroke-width="1.5">
+        <path d="M12 2 L12 22 M2 12 L22 12" opacity="0.5"/>
+        <circle cx="12" cy="12" r="8"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      Shobhit University
+      <div class="sub">Shobhit Institute of Engineering &amp; Technology</div>
+    </div>
+  </div>
+
+  <div class="titleblock">
+    <div class="eyebrow">5-Day Hands-On Workshop &nbsp;·&nbsp; For Class 12 Students</div>
+    <h1>From Cells to Circuits</h1>
+    <h2>A Smart Health Systems Journey</h2>
+    <div class="divider"></div>
+    <p class="blurb">
+      A hands-on introduction to biology and biomedical electronics — explore the human body
+      through classic laboratory techniques, then build the sensors and smart devices used
+      in modern healthcare, through bio-signal acquisition, PCB design, and IoT integration.
+    </p>
+  </div>
+
+  <div class="body-grid">
+    <div class="track bio">
+      <div class="track-day">Day 1&ndash;2 &nbsp;·&nbsp; 7&ndash;8 July</div>
+      <h3>Biological Sciences</h3>
+      <ul>
+        <li>Blood Grouping</li>
+        <li>Blood Staining &amp; Microscopy</li>
+        <li>Exploring Animal Cell Culture Laboratory</li>
+      </ul>
+    </div>
+    <div class="track elec">
+      <div class="track-day">Day 3&ndash;4 &nbsp;·&nbsp; 9&ndash;10 July</div>
+      <h3>Biomedical Electronics</h3>
+      <ul>
+        <li>Bio-Signal Acquisition</li>
+        <li>PCB Design Fundamentals</li>
+        <li>IoT Integration for Health Devices</li>
+        <li>Sensor Interfacing &amp; Prototyping</li>
+        <li>Project Build &amp; Demo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-strip">
+    <div class="item">📅 <b>Date:</b>&nbsp;7&ndash;10 July, 2026</div>
+    <div class="item">🕙 <b>Timing:</b>&nbsp;10:00 AM &ndash; 1:00 PM</div>
+    <div class="item">🎓 <b>Certificate of Completion Provided</b></div>
+    <div class="item">📣 <b>Limited Seats &ndash; Register Now!</b></div>
+  </div>
+
+
+
+</div>
+
+</body>
+</html>

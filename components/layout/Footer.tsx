@@ -1,0 +1,156 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Dna, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { FaLinkedin, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { PLACEHOLDERS, WORKSHOP } from "@/lib/constants";
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = {
+    "Quick Links": [
+      { label: "Home", href: "#home" },
+      { label: "About Workshop", href: "#welcome" },
+      { label: "Schedule", href: "#schedule" },
+      { label: "Laboratories", href: "#laboratories" },
+      { label: "Gallery", href: "#gallery" },
+    ],
+    Programs: [
+      { label: "B.Tech Biomedical", href: "#" },
+      { label: "M.Tech Biomedical", href: "#" },
+      { label: "Ph.D Programs", href: "#" },
+      { label: "Research Labs", href: "#" },
+      { label: "Publications", href: "#" },
+    ],
+    "Workshop Info": [
+      { label: "Registration", href: "#registration" },
+      { label: "FAQ", href: "#faq" },
+      { label: "Contact", href: "#contact" },
+      { label: "Downloads", href: "#downloads" },
+      { label: "WhatsApp Group", href: PLACEHOLDERS.WHATSAPP_COMMUNITY_LINK },
+    ],
+  };
+
+  return (
+    <footer className="relative bg-section-footer border-t border-black/10 dark:border-white/5 overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 via-transparent to-teal-500/5" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-sky-500/50 to-transparent" />
+
+      <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center shadow-lg shadow-sky-500/30">
+                <Dna className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <div className="text-white font-bold text-xl font-display">
+                  Cell<span className="gradient-text">2</span>Circuits
+                </div>
+                <div className="text-sky-400/70 text-xs">Smart Health Systems Workshop</div>
+              </div>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
+              A 5-Day immersive biomedical engineering experience that bridges the world of biology and technology — from living cells to intelligent circuits.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3 text-slate-400 text-sm">
+                <MapPin className="w-4 h-4 mt-0.5 text-sky-400 shrink-0" />
+                <span>{WORKSHOP.organizer}, {WORKSHOP.university} {WORKSHOP.designation}, {WORKSHOP.location}</span>
+              </div>
+              <a
+                href={`mailto:${PLACEHOLDERS.EMAIL}`}
+                className="flex items-center gap-3 text-slate-400 hover:text-sky-400 text-sm transition-colors"
+              >
+                <Mail className="w-4 h-4 text-sky-400 shrink-0" />
+                {PLACEHOLDERS.EMAIL}
+              </a>
+              <a
+                href={`tel:${PLACEHOLDERS.PHONE}`}
+                className="flex items-center gap-3 text-slate-400 hover:text-sky-400 text-sm transition-colors"
+              >
+                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
+                {PLACEHOLDERS.PHONE}
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4 mt-6">
+              {[
+                { Icon: FaLinkedin, href: "#", label: "LinkedIn" },
+                { Icon: FaInstagram, href: "#", label: "Instagram" },
+                { Icon: FaYoutube, href: "#", label: "YouTube" },
+                { Icon: FaTwitter, href: "#", label: "Twitter" },
+              ].map(({ Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  className="w-9 h-9 rounded-lg glass flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/30 transition-colors"
+                  aria-label={label}
+                >
+                  <Icon className="w-4 h-4" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Links */}
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h3 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">
+                {title}
+              </h3>
+              <ul className="space-y-2.5">
+                {links.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      className="text-slate-400 hover:text-sky-400 text-sm transition-colors duration-200 flex items-center gap-1.5 group"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-sky-500/50 group-hover:bg-sky-400 transition-colors" />
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Register CTA */}
+        <div className="glass rounded-2xl p-6 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 className="text-white font-bold text-lg mb-1">Ready to Begin Your Journey?</h3>
+            <p className="text-slate-400 text-sm">Limited seats available. Register before they fill up.</p>
+          </div>
+          <motion.a
+            href={PLACEHOLDERS.GOOGLE_FORM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-semibold rounded-full whitespace-nowrap shadow-lg shadow-sky-500/30"
+          >
+            Register Now <ExternalLink className="w-4 h-4" />
+          </motion.a>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-slate-500 text-sm text-center sm:text-left">
+            © {currentYear} {WORKSHOP.organizer}, {WORKSHOP.university}. All rights reserved.
+          </p>
+          <p className="text-slate-600 text-xs">
+            Crafted with ❤️ for future biomedical innovators
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
