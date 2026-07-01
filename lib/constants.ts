@@ -21,6 +21,13 @@ export const PLACEHOLDERS = {
   PHONE: "+91-121-2575091",
 };
 
+export const PHONES = [
+  { label: "University",   number: "+91-121-2575091"  },
+  { label: "Coordinator",  number: "+91-96349-36278"  },
+  { label: "Coordinator",  number: "+91-90450-04325"  },
+  { label: "Coordinator",  number: "+91-63933-92333"  },
+];
+
 export const SOCIAL_LINKS = {
   INSTAGRAM: "https://www.instagram.com/sbhs_subiomedical?utm_source=qr&igsh=MWpnMHYwMTZkbWF5cA==",
   YOUTUBE:   "https://www.youtube.com/@BMHSShobhitUniversity",

@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { Dna, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { SOCIAL_LINKS } from "@/lib/constants";
-import { PLACEHOLDERS, WORKSHOP } from "@/lib/constants";
+import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES } from "@/lib/constants";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -69,13 +68,21 @@ export function Footer() {
                 <Mail className="w-4 h-4 text-sky-400 shrink-0" />
                 {PLACEHOLDERS.EMAIL}
               </a>
-              <a
-                href={`tel:${PLACEHOLDERS.PHONE}`}
-                className="flex items-center gap-3 text-slate-400 hover:text-sky-400 text-sm transition-colors"
-              >
-                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
-                {PLACEHOLDERS.PHONE}
-              </a>
+              <div className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  {PHONES.map(({ label, number }) => (
+                    <a
+                      key={number}
+                      href={`tel:${number.replace(/\D/g, "")}`}
+                      className="flex items-center gap-2 text-slate-400 hover:text-sky-400 text-xs transition-colors"
+                    >
+                      <span className="text-[9px] font-bold text-sky-600 dark:text-sky-500 uppercase tracking-wide w-10 shrink-0">{label === "University" ? "Univ" : "Coord"}</span>
+                      {number}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Social Links */}

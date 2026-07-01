@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS } from "@/lib/constants";
+import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES } from "@/lib/constants";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 
 const contactInfo = [
@@ -30,12 +30,6 @@ const contactInfo = [
   },
 ];
 
-const phones = [
-  { label: "University", number: "+91-121-2575091" },
-  { label: "Coordinator", number: "+91-96349-36278" },
-  { label: "Coordinator", number: "+91-90450-04325" },
-  { label: "Coordinator", number: "+91-63933-92333" },
-];
 
 const colorMap: Record<string, { text: string; bg: string; border: string }> = {
   sky: { text: "text-sky-400", bg: "bg-sky-500/10", border: "border-sky-500/20" },
@@ -91,34 +85,29 @@ export function Contact() {
               );
             })}
 
-            {/* Phone — multi-number card */}
-            <div className="group glass rounded-2xl p-6 border border-teal-500/20 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center shrink-0">
-                  <Phone className="w-6 h-6 text-teal-400" />
+            {/* Phone — compact multi-number card */}
+            <div className="glass rounded-2xl p-4 border border-teal-500/20">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4 text-teal-400" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-slate-500 text-xs uppercase tracking-wider mb-3">Phone</div>
-                  <div className="space-y-2">
-                    {phones.map(({ label, number }) => (
-                      <a
-                        key={number}
-                        href={`tel:${number.replace(/\D/g, "")}`}
-                        className="flex items-center justify-between gap-3 group/num hover:bg-teal-500/8 rounded-lg px-2 py-1.5 -mx-2 transition-all"
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-[10px] font-semibold text-teal-600 dark:text-teal-500 bg-teal-500/10 px-2 py-0.5 rounded-full min-w-[76px] text-center">
-                            {label}
-                          </span>
-                          <span className="text-white font-medium text-sm group-hover/num:text-teal-400 transition-colors">
-                            {number}
-                          </span>
-                        </div>
-                        <ExternalLink className="w-3 h-3 text-teal-500 opacity-0 group-hover/num:opacity-100 transition-opacity shrink-0" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
+                <span className="text-slate-500 text-xs uppercase tracking-wider">Phone</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5">
+                {PHONES.map(({ label, number }) => (
+                  <a
+                    key={number}
+                    href={`tel:${number.replace(/\D/g, "")}`}
+                    className="group/num flex items-center gap-1.5 rounded-lg px-2.5 py-2 hover:bg-teal-500/10 transition-all"
+                  >
+                    <span className="text-[9px] font-bold text-teal-500 bg-teal-500/10 px-1.5 py-0.5 rounded-full shrink-0 uppercase tracking-wide">
+                      {label === "University" ? "Univ" : "Coord"}
+                    </span>
+                    <span className="text-white text-xs font-medium group-hover/num:text-teal-400 transition-colors truncate">
+                      {number}
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
 
