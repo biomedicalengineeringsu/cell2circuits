@@ -10,11 +10,8 @@ mkdirSync(OUT_DIR, { recursive: true });
 
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
-// ─── Real logo images as base64 data URIs ────────────────────────────────────
-// Use the high-res separate logos (381×144 and 144×126) — not the low-res
-// 300×78 banner which blurs when stretched across A4 width.
-const LOGO_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-logo.png")).toString("base64")}`;
-const NAAC_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "naac-logo.png")).toString("base64")}`;
+// ─── Logo: the combined green banner at its natural 300×78 size ──────────────
+const LOGO_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-banner-logo.png")).toString("base64")}`;
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const BASE_CSS = `
@@ -31,84 +28,63 @@ const BASE_CSS = `
   }
 
   /* ══════════════════════════════════════════
-     HEADER  — matches the green university banner
+     HEADER — logo left at natural size, text right
      ══════════════════════════════════════════ */
   .header {
     page-break-inside: avoid;
-    border-bottom: 5px solid #c8a535;
+    display: flex;
+    align-items: stretch;
+    border-bottom: 5px solid #1a4d2e;
+    background: #0d2353;
   }
 
-  /* Top row: green banner with logo + text + NAAC */
-  .header-top {
-    background: linear-gradient(135deg, #145a32 0%, #1e8449 40%, #145a32 100%);
+  /* Logo column — exact natural size, no scaling */
+  .header-logo-col {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    gap: 12px;
-    border-bottom: 2px solid #0b3d20;
+    background: #fff;           /* white bg so logo colours read correctly */
+    padding: 8px 12px;
+    border-right: 4px solid #1a4d2e;
   }
-
-  /* University logo (left) — displayed at native scale, never upsampled */
   .header-logo {
-    height: 72px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
+    display: block;
+    width: 300px;               /* exact natural width of su-banner-logo.png */
+    height: 78px;               /* exact natural height — zero upsampling     */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
 
-  /* Center text column */
-  .header-center {
+  /* Text column — fills remaining space */
+  .header-text-col {
     flex: 1;
-    text-align: center;
-    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+    background: #0d2353;
   }
-  .header-univ {
+  .header-school {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 22px;
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    line-height: 1.1;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  }
-  .header-univ-gold {
+    font-size: 15px;
+    font-weight: 700;
     color: #fdd835;
+    letter-spacing: 0.6px;
+    line-height: 1.2;
+    margin-bottom: 4px;
   }
-  .header-tagline {
+  .header-dept {
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+  }
+  .header-addr {
     font-size: 9.5px;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.5px;
-    margin-top: 3px;
+    color: rgba(255,255,255,0.70);
     font-style: italic;
   }
-
-  /* NAAC badge (right) */
-  .header-naac {
-    height: 68px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-
-  /* School name bar below green header */
-  .header-school-bar {
-    background: #0d2353;
-    color: #ffffff;
-    text-align: center;
-    padding: 7px 24px;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    border-bottom: 3px solid #c8a535;
-  }
-  .header-school-bar .gold { color: #fdd835; }
 
   /* ── Document title banner ── */
   .doc-title-bar {
@@ -256,24 +232,15 @@ const BASE_CSS = `
 function universityHeader(docTitle, docSubtitle) {
   return `
     <div class="header">
-      <!-- Green university banner row -->
-      <div class="header-top">
+      <!-- Logo: original 300×78, white background, left aligned -->
+      <div class="header-logo-col">
         <img class="header-logo" src="${LOGO_DATA}" alt="Shobhit University"/>
-        <div class="header-center">
-          <div class="header-univ">
-            <span class="header-univ-gold">Shobhit</span> University
-          </div>
-          <div class="header-tagline">
-            Shobhit Institute of Engineering &amp; Technology &nbsp;·&nbsp; Deemed-to-be University (Est. 2000)
-          </div>
-        </div>
-        <img class="header-naac" src="${NAAC_DATA}" alt="NAAC A Grade Accredited"/>
       </div>
-      <!-- Navy school bar -->
-      <div class="header-school-bar">
-        School of Biomedical Engineering &amp; Health Sciences
-        &nbsp;<span class="gold">|</span>&nbsp;
-        NH-58, Modipuram, Meerut – 250110, Uttar Pradesh
+      <!-- Text: fills remaining width -->
+      <div class="header-text-col">
+        <div class="header-school">Shobhit Institute of Engineering &amp; Technology (Deemed-to-be University)</div>
+        <div class="header-dept">School of Biomedical Engineering &amp; Health Sciences</div>
+        <div class="header-addr">NH-58, Modipuram, Meerut – 250110, Uttar Pradesh, India</div>
       </div>
     </div>
     <div class="doc-title-bar">
