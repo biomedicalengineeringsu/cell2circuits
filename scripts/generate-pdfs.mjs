@@ -11,8 +11,7 @@ mkdirSync(OUT_DIR, { recursive: true });
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
 // ─── Real logo images as base64 data URIs ────────────────────────────────────
-const LOGO_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-logo.png")).toString("base64")}`;
-const NAAC_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "naac-logo.png")).toString("base64")}`;
+const BANNER_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-banner-logo.png")).toString("base64")}`;
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const BASE_CSS = `
@@ -27,52 +26,28 @@ const BASE_CSS = `
 
   /* ── Header ── */
   .header {
-    background: linear-gradient(135deg, #0d2353 0%, #1a3a6e 60%, #0d2353 100%);
-    color: white;
-    padding: 16px 28px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border-bottom: 5px solid #c8a535;
     page-break-inside: avoid;
+    border-bottom: 3px solid #1a4d2e;
   }
-  .header-logo-img {
-    height: 76px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  .header-banner {
+    width: 100%;
+    height: auto;
+    display: block;
   }
-  .header-naac-img {
-    height: 72px;
-    width: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
-  }
-  .header-text { flex: 1; text-align: center; }
-  .header-univ-name {
-    font-size: 22px; font-weight: 900; letter-spacing: 3px;
-    color: #c8a535; text-transform: uppercase;
-    font-family: Georgia, 'Times New Roman', serif;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    margin-bottom: 3px;
-  }
-  .header-sub {
-    font-size: 10.5px; color: #c8d8ee; letter-spacing: 0.5px; margin-top: 2px;
-  }
-  .header-school {
-    font-size: 14px; font-weight: 800; color: #ffffff;
-    margin-top: 6px; letter-spacing: 0.4px;
+  .header-school-bar {
+    background: #0d2353;
+    color: #ffffff;
+    text-align: center;
+    padding: 7px 24px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
     font-family: 'Segoe UI', Arial, sans-serif;
+    border-top: 1px solid rgba(200,165,53,0.3);
+    border-bottom: 4px solid #c8a535;
   }
-  .header-address {
-    font-size: 9.5px; color: #c8a535; margin-top: 4px;
-    font-style: italic; letter-spacing: 0.3px;
-  }
-  .header-divider {
-    width: 60%; height: 1px; background: rgba(200,165,53,0.4);
-    margin: 5px auto 0;
+  .header-school-bar span {
+    color: #c8a535;
   }
 
   /* ── Document title banner ── */
@@ -221,15 +196,12 @@ const BASE_CSS = `
 function universityHeader(docTitle, docSubtitle) {
   return `
     <div class="header">
-      <img class="header-logo-img" src="${LOGO_DATA}" alt="Shobhit University Logo"/>
-      <div class="header-text">
-        <div class="header-univ-name">Shobhit University</div>
-        <div class="header-sub">Shobhit Institute of Engineering &amp; Technology (Deemed-to-be University)</div>
-        <div class="header-divider"></div>
-        <div class="header-school">School of Biomedical Engineering &amp; Health Sciences</div>
-        <div class="header-address">NH-58, Modipuram, Meerut – 250110, Uttar Pradesh, India</div>
+      <img class="header-banner" src="${BANNER_DATA}" alt="Shobhit University"/>
+      <div class="header-school-bar">
+        School of Biomedical Engineering &amp; Health Sciences
+        &nbsp;|&nbsp;
+        <span>NH-58, Modipuram, Meerut – 250110, Uttar Pradesh</span>
       </div>
-      <img class="header-naac-img" src="${NAAC_DATA}" alt="NAAC A Grade"/>
     </div>
     <div class="doc-title-bar">
       <h1>${docTitle}</h1>
