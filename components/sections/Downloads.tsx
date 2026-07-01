@@ -10,7 +10,7 @@ const downloads = [
     icon: FileText,
     title: "Workshop Brochure",
     description: "Complete overview of the workshop — activities, faculty, facilities, and registration details. Share with your family and school.",
-    format: "PDF · ~2 MB",
+    format: "PDF · 0.5 MB",
     href: PLACEHOLDERS.BROCHURE_LINK,
     color: "sky",
     emoji: "📄",
