@@ -70,7 +70,7 @@ export function Gallery() {
                     ? "border-violet-500/40 hover:border-violet-400/70 hover:shadow-lg hover:shadow-violet-500/20"
                     : "border-white/5 hover:border-sky-500/30"
                 }`}
-                style={{ height: item.size === "large" ? "280px" : item.size === "medium" ? "200px" : "160px" }}
+                style={{ height: item.size === "large" ? "clamp(140px,22vw,280px)" : item.size === "medium" ? "clamp(110px,16vw,200px)" : "clamp(90px,12vw,160px)" }}
                 onClick={() => setLightbox(item)}
               >
                 <div className="absolute inset-0 flex flex-col items-center justify-center">

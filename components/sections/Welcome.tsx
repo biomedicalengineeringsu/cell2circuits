@@ -63,7 +63,7 @@ export function Welcome() {
         <AnimatedSection delay={0.3} className="mt-16 mb-20">
           <div className="max-w-4xl mx-auto glass rounded-3xl p-8 md:p-12 gradient-border relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-500 via-teal-500 to-purple-500 rounded-t-3xl" />
-            <blockquote className="text-xl md:text-2xl text-slate-300 leading-relaxed text-center italic font-light">
+            <blockquote className="text-base sm:text-xl md:text-2xl text-slate-300 leading-relaxed text-center italic font-light">
               &ldquo;Imagine being the engineer who builds the device that detects cancer six months earlier than before — or the researcher who creates a brain-computer interface that lets a paralyzed patient type with their thoughts. That engineer started exactly where you are: curious, ambitious, and ready to learn.&rdquo;
             </blockquote>
             <div className="mt-6 text-center">
@@ -84,12 +84,12 @@ export function Welcome() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`glass rounded-2xl p-8 border bg-gradient-to-br ${color} group card-hover`}
+              className={`glass rounded-2xl p-5 sm:p-8 border bg-gradient-to-br ${color} group card-hover`}
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-white/5 group-hover:scale-110 transition-transform duration-300`}>
                 <Icon className={`w-6 h-6 ${iconColor}`} />
               </div>
-              <h3 className="text-white font-bold text-xl mb-3">{title}</h3>
+              <h3 className="text-white font-bold text-base sm:text-xl mb-3">{title}</h3>
               <p className="text-slate-400 leading-relaxed">{description}</p>
             </motion.div>
           ))}

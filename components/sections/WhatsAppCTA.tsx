@@ -23,7 +23,7 @@ export function WhatsAppCTA() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="glass rounded-3xl p-10 md:p-14 text-center gradient-border relative overflow-hidden"
+          className="glass rounded-3xl p-6 sm:p-10 md:p-14 text-center gradient-border relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-t-3xl" />
 
@@ -36,12 +36,12 @@ export function WhatsAppCTA() {
             <MessageCircle className="w-10 h-10 text-white" />
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-display">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-4 font-display">
             Join Our WhatsApp<br />
             <span className="text-green-400">Community</span>
           </h2>
 
-          <p className="text-slate-400 text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-slate-400 text-sm sm:text-lg mb-8 max-w-xl mx-auto">
             Be the first to know about workshop dates, preparation tips, and connect with other aspiring biomedical engineers from across India.
           </p>
 
@@ -77,7 +77,7 @@ export function WhatsAppCTA() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(34,197,94,0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xl font-bold rounded-full shadow-2xl shadow-green-500/30"
+            className="inline-flex items-center gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-base sm:text-xl font-bold rounded-full shadow-2xl shadow-green-500/30"
           >
             <MessageCircle className="w-6 h-6" />
             Join WhatsApp Community

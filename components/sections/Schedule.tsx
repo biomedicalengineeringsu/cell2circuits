@@ -209,7 +209,7 @@ export function Schedule() {
             className={`glass rounded-3xl border bg-gradient-to-br ${colors.bg} ${colors.border} overflow-hidden`}
           >
             {/* Header */}
-            <div className="p-8 border-b border-white/10">
+            <div className="p-4 sm:p-8 border-b border-white/10">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <div className={`w-16 h-16 rounded-2xl ${colorConfig[current.color].button} flex items-center justify-center shadow-xl shrink-0`}>
                   <Icon className="w-8 h-8 text-white" />
@@ -218,14 +218,14 @@ export function Schedule() {
                   <div className={`text-sm font-medium ${colors.text} uppercase tracking-widest mb-1`}>
                     Day {current.day} · Theme: {current.theme}
                   </div>
-                  <h3 className="text-white font-black text-3xl font-display">{current.title}</h3>
+                  <h3 className="text-white font-black text-xl sm:text-3xl font-display">{current.title}</h3>
                 </div>
                 <div className="sm:ml-auto text-6xl">{current.emoji}</div>
               </div>
             </div>
 
             {/* Content grid */}
-            <div className="p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="p-4 sm:p-8 grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
               {/* Topics */}
               <div>
                 <h4 className={`font-semibold ${colors.text} text-sm uppercase tracking-wider mb-4 flex items-center gap-2`}>

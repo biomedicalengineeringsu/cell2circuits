@@ -112,7 +112,7 @@ export function Contact() {
                 </div>
                 <span className="text-slate-500 text-xs uppercase tracking-wider">Phone</span>
               </div>
-              <div className="grid grid-cols-2 gap-1.5">
+              <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-1.5">
                 {PHONES.map(({ label, number }) => (
                   <a
                     key={number}
@@ -164,10 +164,10 @@ export function Contact() {
           >
             <div className="glass rounded-2xl border border-white/5 overflow-hidden h-full flex flex-col">
               {/* Google Maps embed */}
-              <div className="relative flex-1 min-h-[320px]">
+              <div className="relative flex-1 min-h-[220px] sm:min-h-[320px]">
                 <iframe
                   src="https://maps.google.com/maps?q=Shobhit+University+NH-58+Modipuram+Meerut+Uttar+Pradesh&output=embed&z=15"
-                  className="w-full h-full min-h-[320px] border-0"
+                  className="w-full h-full min-h-[220px] sm:min-h-[320px] border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Shobhit University Location"

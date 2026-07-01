@@ -67,7 +67,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-left flex items-center justify-between gap-4 p-6"
+        className="w-full text-left flex items-center justify-between gap-4 p-4 sm:p-6"
       >
         <span className={`font-semibold text-base transition-colors ${isOpen ? "text-sky-300" : "text-white"}`}>
           {faq.question}
@@ -90,7 +90,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
             transition={{ duration: 0.35, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-6 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+            <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-4">
               {faq.answer}
             </div>
           </motion.div>

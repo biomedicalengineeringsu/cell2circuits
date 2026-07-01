@@ -653,7 +653,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.95 }}
-          className="mt-14 pt-7 flex flex-wrap items-center justify-center gap-8 md:gap-12"
+          className="mt-14 pt-7 flex flex-wrap items-center justify-center gap-4 sm:gap-8 md:gap-12"
           style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
         >
           {([

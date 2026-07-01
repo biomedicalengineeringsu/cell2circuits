@@ -63,7 +63,7 @@ export function LearningOutcomes() {
           transition={{ delay: 0.3 }}
           className="mt-12 glass rounded-2xl p-8 gradient-border"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {[
               { num: "16+", label: "Distinct Skills" },
               { num: "5", label: "Laboratory Days" },

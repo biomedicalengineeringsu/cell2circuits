@@ -36,13 +36,13 @@ export function SectionHeader({
       )}
       <AnimatedSection delay={0.1}>
         <h2
-          className="text-4xl md:text-5xl lg:text-6xl font-bold dark:text-white text-slate-900 mb-6 font-display leading-tight"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold dark:text-white text-slate-900 mb-6 font-display leading-tight"
           dangerouslySetInnerHTML={{ __html: fullTitle }}
         />
       </AnimatedSection>
       {subtitle && (
         <AnimatedSection delay={0.2}>
-          <p className={cn("text-slate-400 text-lg leading-relaxed", center ? "max-w-2xl mx-auto" : "max-w-2xl")}>
+          <p className={cn("text-slate-400 text-sm sm:text-base md:text-lg leading-relaxed", center ? "max-w-2xl mx-auto" : "max-w-2xl")}>
             {subtitle}
           </p>
         </AnimatedSection>

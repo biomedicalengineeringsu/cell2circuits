@@ -142,7 +142,7 @@ function JourneyCard({ step, index }: { step: typeof journeySteps[0]; index: num
 
       <button
         onClick={() => setExpanded(!expanded)}
-        className={`w-full text-left glass rounded-2xl border bg-gradient-to-br ${colors.bg} ${colors.border} p-6 hover:shadow-lg transition-all duration-300`}
+        className={`w-full text-left glass rounded-2xl border bg-gradient-to-br ${colors.bg} ${colors.border} p-4 sm:p-6 hover:shadow-lg transition-all duration-300`}
       >
         <div className="flex items-center gap-4">
           {/* Step number */}

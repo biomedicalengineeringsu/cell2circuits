@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Dna, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
@@ -39,7 +39,7 @@ export function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-sky-500/50 to-transparent" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
@@ -54,7 +54,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
-              A 5-Day immersive biomedical engineering experience that bridges the world of biology and technology — from living cells to intelligent circuits.
+              A 5-Day immersive biomedical engineering experience that bridges the world of biology and technology â€” from living cells to intelligent circuits.
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-slate-400 text-sm">
@@ -187,10 +187,10 @@ export function Footer() {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-slate-600 text-xs text-center sm:text-left">
-              © {currentYear} {WORKSHOP.organizer}, {WORKSHOP.university}. All rights reserved.
+              Â© {currentYear} {WORKSHOP.organizer}, {WORKSHOP.university}. All rights reserved.
             </p>
             <p className="text-slate-600 text-xs">
-              Crafted with ❤️ for future biomedical innovators
+              Crafted with â¤ï¸ for future biomedical innovators
             </p>
           </div>
         </div>
@@ -198,3 +198,4 @@ export function Footer() {
     </footer>
   );
 }
+

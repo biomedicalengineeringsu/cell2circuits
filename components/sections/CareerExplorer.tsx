@@ -118,11 +118,11 @@ export function CareerExplorer() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1, type: "spring" }}
-                className="glass rounded-2xl px-8 py-4 border border-white/10 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-center group"
+                className="glass rounded-2xl px-3 sm:px-8 py-3 sm:py-4 border border-white/10 hover:border-sky-500/30 hover:bg-sky-500/5 transition-all text-center group"
               >
                 <span className="text-2xl mr-3">{emoji}</span>
-                <span className="text-white font-semibold">{label}</span>
-                <span className="text-slate-500 text-sm ml-3">— {desc}</span>
+                <span className="text-white font-semibold text-sm sm:text-base">{label}</span>
+                <span className="text-slate-500 text-xs sm:text-sm ml-2 sm:ml-3">— {desc}</span>
               </motion.div>
               {i < roadmapSteps.length - 1 && (
                 <motion.div

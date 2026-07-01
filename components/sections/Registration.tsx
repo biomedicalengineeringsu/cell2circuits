@@ -85,7 +85,7 @@ export function Registration() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04, boxShadow: "0 20px 50px rgba(14,165,233,0.45)" }}
               whileTap={{ scale: 0.97 }}
-              className="flex items-center justify-center gap-3 w-full py-5 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-bold text-lg rounded-2xl shadow-xl shadow-sky-500/30 mb-4"
+              className="flex items-center justify-center gap-3 w-full py-4 sm:py-5 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-bold text-base sm:text-lg rounded-2xl shadow-xl shadow-sky-500/30 mb-4"
             >
               Open Registration Form <ExternalLink className="w-5 h-5" />
             </motion.a>
