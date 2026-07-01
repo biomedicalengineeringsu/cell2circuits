@@ -91,8 +91,7 @@ function BeatingHeart() {
     <div className="absolute pointer-events-none"
       style={{
         right: "clamp(20px,10vw,140px)",
-        top: "50%",
-        transform: "translateY(-50%)",
+        bottom: "8%",
         width: "clamp(160px,18vw,260px)",
         opacity: 0.60,
       }}>
