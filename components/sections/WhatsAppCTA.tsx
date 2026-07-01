@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MessageCircle, Users, Bell, Share2 } from "lucide-react";
 import { PLACEHOLDERS } from "@/lib/constants";
+import QRCode from "react-qr-code";
 
 const benefits = [
   { icon: Bell, text: "Real-time workshop updates and announcements" },
@@ -54,17 +55,20 @@ export function WhatsAppCTA() {
             ))}
           </div>
 
-          {/* QR Placeholder */}
-          <div className="glass rounded-2xl w-40 h-40 mx-auto mb-8 flex flex-col items-center justify-center border border-green-500/20">
-            <div className="grid grid-cols-3 gap-1 p-3">
-              {Array.from({ length: 9 }).map((_, i) => (
-                <div
-                  key={i}
-                  className={`w-6 h-6 rounded-sm ${[0, 2, 6, 8, 4].includes(i) ? "bg-green-400" : "bg-white/10"}`}
-                />
-              ))}
+          {/* QR Code */}
+          <div className="mx-auto mb-8 flex flex-col items-center gap-3">
+            <div className="bg-white rounded-2xl p-4 shadow-xl shadow-green-500/20 border-2 border-green-400/30">
+              <QRCode
+                value={PLACEHOLDERS.WHATSAPP_COMMUNITY_LINK}
+                size={160}
+                bgColor="#ffffff"
+                fgColor="#075e54"
+                level="H"
+              />
             </div>
-            <p className="text-green-400/70 text-xs mt-2">Scan to Join</p>
+            <p className="text-green-400/80 text-xs font-medium tracking-wide">
+              📱 Scan to Join
+            </p>
           </div>
 
           <motion.a
