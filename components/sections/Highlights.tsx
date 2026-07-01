@@ -76,7 +76,7 @@ export function Highlights() {
             All Included in Your Workshop Experience
           </h3>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Lunch, laboratory consumables, workshop materials, access to all facilities, guidance from expert faculty, and a university-issued certificate — everything is provided.
+            Laboratory consumables, workshop materials, access to all facilities, guidance from expert faculty, and a university-issued certificate — everything is provided.
           </p>
         </motion.div>
       </div>
