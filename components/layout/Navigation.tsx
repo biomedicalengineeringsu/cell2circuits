@@ -72,7 +72,7 @@ export function Navigation() {
             </div>
             <div>
               <div className="text-white font-bold text-sm leading-tight font-display">
-                Cell<span className="gradient-text">2</span>Circuits
+                Cells<span className="gradient-text">2</span>Circuits
               </div>
               <div className="text-sky-400/70 text-[10px] leading-tight">
                 Smart Health Systems

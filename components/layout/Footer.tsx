@@ -48,7 +48,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="text-white font-bold text-xl font-display">
-                  Cell<span className="gradient-text">2</span>Circuits
+                  Cells<span className="gradient-text">2</span>Circuits
                 </div>
                 <div className="text-sky-400/70 text-xs">Smart Health Systems Workshop</div>
               </div>

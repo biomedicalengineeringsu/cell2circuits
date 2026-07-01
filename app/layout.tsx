@@ -21,7 +21,7 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: {
     default: "From Cells to Circuits | Smart Health Systems Workshop",
-    template: "%s | Cell2Circuits",
+    template: "%s | Cells2Circuits",
   },
   description:
     "A 5-Day Hands-on Biomedical Engineering Workshop for Class XII Science Students. Experience the journey from cells to circuits at Shobhit Institute of Engineering & Technology, Meerut.",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "From Cells to Circuits – A Smart Health Systems Journey",
     description:
       "5-Day Hands-on Biomedical Engineering Workshop for Class XII Students. Blood Grouping, ECG, Circuits, AI in Healthcare & more.",
-    siteName: "Cell2Circuits Workshop",
+    siteName: "Cells2Circuits Workshop",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "From Cells to Circuits Workshop" }],
   },
   twitter: {

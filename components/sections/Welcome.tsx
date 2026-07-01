@@ -107,7 +107,7 @@ export function Welcome() {
               { arrow: true },
               { emoji: "❤️", label: "Signal" },
               { arrow: true },
-              { emoji: "⚡", label: "Circuit" },
+              { emoji: "⚡", label: "Circuits" },
               { arrow: true },
               { emoji: "🤖", label: "AI" },
               { arrow: true },
