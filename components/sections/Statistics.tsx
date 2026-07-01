@@ -40,7 +40,11 @@ function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   }, [isInView, value]);
 
   return (
-    <div ref={ref} className="text-4xl md:text-5xl font-black gradient-text font-display counter-value">
+    <div
+      ref={ref}
+      className="font-black gradient-text font-display leading-none"
+      style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)" }}
+    >
       {count}{suffix}
     </div>
   );
@@ -60,19 +64,19 @@ export function Statistics() {
           subtitle="Numbers tell only part of the story. But they give you a sense of the depth, breadth, and quality of this workshop."
         />
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-16">
           {stats.map(({ value, suffix, label, emoji, description }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group glass rounded-2xl p-6 text-center border border-white/5 hover:border-sky-500/20 hover:bg-sky-500/5 transition-all duration-300 card-hover"
+              className="group glass rounded-2xl p-4 xl:p-5 text-center border border-white/5 hover:border-sky-500/20 hover:bg-sky-500/5 transition-all duration-300 card-hover flex flex-col items-center"
             >
-              <div className="text-3xl mb-3">{emoji}</div>
+              <div className="text-2xl mb-2">{emoji}</div>
               <AnimatedCounter value={value} suffix={suffix} />
-              <div className="text-white text-sm font-semibold mt-2 mb-1">{label}</div>
-              <div className="text-slate-500 text-xs">{description}</div>
+              <div className="text-white text-xs font-semibold mt-2 mb-1 leading-snug">{label}</div>
+              <div className="text-slate-500 text-[10px] leading-snug">{description}</div>
             </motion.div>
           ))}
         </div>
