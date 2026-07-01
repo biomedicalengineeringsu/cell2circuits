@@ -11,7 +11,7 @@ export const WORKSHOP = {
 
 export const PLACEHOLDERS = {
   GOOGLE_FORM_LINK: "https://forms.gle/2ia65qxnCZrBhDq16",
-  WHATSAPP_COMMUNITY_LINK: "https://chat.whatsapp.com/your-community-link",
+  WHATSAPP_COMMUNITY_LINK: "https://chat.whatsapp.com/G03e7rSDhgPL9h021G0fFj",
   BROCHURE_LINK: "/downloads/brochure.pdf",
   SCHEDULE_LINK: "/downloads/schedule.pdf",
   PREP_GUIDE_LINK: "/downloads/preparation-guide.pdf",
