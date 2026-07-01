@@ -15,13 +15,6 @@ const contactInfo = [
     color: "sky",
   },
   {
-    icon: Phone,
-    label: "Phone",
-    value: PLACEHOLDERS.PHONE,
-    href: `tel:${PLACEHOLDERS.PHONE}`,
-    color: "teal",
-  },
-  {
     icon: MapPin,
     label: "Location",
     value: `${WORKSHOP.organizer}, ${WORKSHOP.university} ${WORKSHOP.designation}, NH-58, Modipuram, ${WORKSHOP.location}`,
@@ -35,6 +28,13 @@ const contactInfo = [
     href: null,
     color: "purple",
   },
+];
+
+const phones = [
+  { label: "University", number: "+91-121-2575091" },
+  { label: "Coordinator", number: "+91-96349-36278" },
+  { label: "Coordinator", number: "+91-90450-04325" },
+  { label: "Coordinator", number: "+91-63933-92333" },
 ];
 
 const colorMap: Record<string, { text: string; bg: string; border: string }> = {
@@ -66,6 +66,7 @@ export function Contact() {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
+            {/* Email */}
             {contactInfo.map(({ icon: Icon, label, value, href, color }) => {
               const c = colorMap[color];
               const content = (
@@ -89,6 +90,37 @@ export function Contact() {
                 <div key={label}>{content}</div>
               );
             })}
+
+            {/* Phone — multi-number card */}
+            <div className="group glass rounded-2xl p-6 border border-teal-500/20 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center shrink-0">
+                  <Phone className="w-6 h-6 text-teal-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-slate-500 text-xs uppercase tracking-wider mb-3">Phone</div>
+                  <div className="space-y-2">
+                    {phones.map(({ label, number }) => (
+                      <a
+                        key={number}
+                        href={`tel:${number.replace(/\D/g, "")}`}
+                        className="flex items-center justify-between gap-3 group/num hover:bg-teal-500/8 rounded-lg px-2 py-1.5 -mx-2 transition-all"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-[10px] font-semibold text-teal-600 dark:text-teal-500 bg-teal-500/10 px-2 py-0.5 rounded-full min-w-[76px] text-center">
+                            {label}
+                          </span>
+                          <span className="text-white font-medium text-sm group-hover/num:text-teal-400 transition-colors">
+                            {number}
+                          </span>
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-teal-500 opacity-0 group-hover/num:opacity-100 transition-opacity shrink-0" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Social */}
             <div className="glass rounded-2xl p-6 border border-white/5">
