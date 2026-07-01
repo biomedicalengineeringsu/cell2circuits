@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Dna, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
-import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES } from "@/lib/constants";
+import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES, EMAILS } from "@/lib/constants";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -61,13 +61,21 @@ export function Footer() {
                 <MapPin className="w-4 h-4 mt-0.5 text-sky-400 shrink-0" />
                 <span>{WORKSHOP.organizer}, {WORKSHOP.university} {WORKSHOP.designation}, {WORKSHOP.location}</span>
               </div>
-              <a
-                href={`mailto:${PLACEHOLDERS.EMAIL}`}
-                className="flex items-center gap-3 text-slate-400 hover:text-sky-400 text-sm transition-colors"
-              >
-                <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-                {PLACEHOLDERS.EMAIL}
-              </a>
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  {EMAILS.map(({ label, address }) => (
+                    <a
+                      key={address}
+                      href={`mailto:${address}`}
+                      className="flex items-center gap-2 text-slate-400 hover:text-sky-400 text-xs transition-colors"
+                    >
+                      <span className="text-[9px] font-bold text-sky-600 dark:text-sky-500 uppercase tracking-wide w-10 shrink-0">{label}</span>
+                      {address}
+                    </a>
+                  ))}
+                </div>
+              </div>
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
                 <div className="space-y-0.5">
@@ -153,13 +161,16 @@ export function Footer() {
         <div className="border-t border-white/5 pt-8 space-y-3">
           {/* Quick contact strip */}
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <a
-              href={`mailto:${PLACEHOLDERS.EMAIL}`}
-              className="flex items-center gap-1.5 text-slate-500 hover:text-sky-400 text-xs transition-colors"
-            >
-              <Mail className="w-3 h-3 shrink-0" />
-              {PLACEHOLDERS.EMAIL}
-            </a>
+            {EMAILS.map(({ address }) => (
+              <a
+                key={address}
+                href={`mailto:${address}`}
+                className="flex items-center gap-1.5 text-slate-500 hover:text-sky-400 text-xs transition-colors"
+              >
+                <Mail className="w-3 h-3 shrink-0" />
+                {address}
+              </a>
+            ))}
             {PHONES.map(({ label, number }) => (
               <a
                 key={number}

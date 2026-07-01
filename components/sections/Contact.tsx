@@ -3,17 +3,10 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES } from "@/lib/constants";
+import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS, PHONES, EMAILS } from "@/lib/constants";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 
 const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: PLACEHOLDERS.EMAIL,
-    href: `mailto:${PLACEHOLDERS.EMAIL}`,
-    color: "sky",
-  },
   {
     icon: MapPin,
     label: "Location",
@@ -84,6 +77,32 @@ export function Contact() {
                 <div key={label}>{content}</div>
               );
             })}
+
+            {/* Email — multi-address card */}
+            <div className="glass rounded-2xl p-4 border border-sky-500/20">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-sky-500/10 flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4 text-sky-400" />
+                </div>
+                <span className="text-slate-500 text-xs uppercase tracking-wider">Email</span>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                {EMAILS.map(({ label, address }) => (
+                  <a
+                    key={address}
+                    href={`mailto:${address}`}
+                    className="group/em flex items-center gap-1.5 rounded-lg px-2.5 py-2 hover:bg-sky-500/10 transition-all"
+                  >
+                    <span className="text-[9px] font-bold text-sky-500 bg-sky-500/10 px-1.5 py-0.5 rounded-full shrink-0 uppercase tracking-wide">
+                      {label}
+                    </span>
+                    <span className="text-white text-xs font-medium group-hover/em:text-sky-400 transition-colors break-all">
+                      {address}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
 
             {/* Phone — compact multi-number card */}
             <div className="glass rounded-2xl p-4 border border-teal-500/20">

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { PLACEHOLDERS } from "@/lib/constants";
+import { PLACEHOLDERS, EMAILS } from "@/lib/constants";
 
 const faqs = [
   {
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "How do I register for the workshop?",
-    answer: `Click the "Register Now" button anywhere on this page to access the Google Form. Fill in your details, submit, and you'll receive a confirmation email within 24 hours. Seats are limited, so register early. For assistance, email us at ${PLACEHOLDERS.EMAIL} or call ${PLACEHOLDERS.PHONE}.`,
+    answer: `Click the "Register Now" button anywhere on this page to access the Google Form. Fill in your details, submit, and you'll receive a confirmation email within 24 hours. Seats are limited, so register early. For assistance, email us at ${EMAILS[0].address} or ${EMAILS[1].address}, or call ${PLACEHOLDERS.PHONE}.`,
   },
   {
     question: "Can parents visit the campus during the workshop?",
@@ -127,7 +127,7 @@ export function FAQ() {
           <p className="text-slate-400 mb-4">Still have questions?</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`mailto:${PLACEHOLDERS.EMAIL}`}
+              href={`mailto:${EMAILS[0].address},${EMAILS[1].address}`}
               className="flex items-center gap-2 px-5 py-2.5 glass rounded-full text-sky-400 hover:text-white hover:border-sky-500/30 transition-all text-sm"
             >
               ✉️ Email Us
