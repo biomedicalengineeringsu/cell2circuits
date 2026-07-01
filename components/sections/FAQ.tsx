@@ -23,11 +23,6 @@ const faqs = [
       "Bring your curiosity! Practically, you'll need: casual comfortable clothes (lab coat will be provided), a notebook and pen, your student ID, and any prescribed preparation materials from our Preparation Guide (available for download). No laptops required — workstations are provided.",
   },
   {
-    question: "Is lunch provided during the workshop?",
-    answer:
-      "Yes, all meals during the workshop days are provided as part of the registration. We accommodate vegetarian and non-vegetarian preferences — please mention your food preference in the registration form.",
-  },
-  {
     question: "How do I register for the workshop?",
     answer: `Click the "Register Now" button anywhere on this page to access the Google Form. Fill in your details, submit, and you'll receive a confirmation email within 24 hours. Seats are limited, so register early. For assistance, email us at ${PLACEHOLDERS.EMAIL} or call ${PLACEHOLDERS.PHONE}.`,
   },
