@@ -545,12 +545,13 @@ export function Hero() {
           </span>
           <span className="block my-1"
             style={{ fontSize: "clamp(2rem, 7vw, 5rem)", color: "rgba(255,255,255,0.48)" }}>to</span>
-          <span className="block" style={{
-            background: "linear-gradient(135deg, #60a5fa 0%, #a78bfa 55%, #f0abfc 100%)",
+          <span style={{
+            display: "inline-block",
+            background: "linear-gradient(90deg, #60a5fa 0%, #a78bfa 60%, #e879f9 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            filter: "drop-shadow(0 0 30px rgba(96,165,250,0.45))",
+            filter: "drop-shadow(0 0 30px rgba(96,165,250,0.55))",
           }}>
             CIRCUITS
           </span>
