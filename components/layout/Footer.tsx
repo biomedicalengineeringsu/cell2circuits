@@ -70,7 +70,7 @@ export function Footer() {
                       href={`mailto:${address}`}
                       className="flex items-center gap-2 text-slate-400 hover:text-sky-400 text-xs transition-colors"
                     >
-                      <span className="text-[9px] font-bold text-sky-600 dark:text-sky-500 uppercase tracking-wide w-10 shrink-0">{label}</span>
+                      <span className="text-[9px] font-bold text-sky-600 dark:text-sky-500 uppercase tracking-wide min-w-[4.5rem] shrink-0">{label}</span>
                       {address}
                     </a>
                   ))}
