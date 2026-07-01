@@ -19,7 +19,7 @@ const downloads = [
     icon: Calendar,
     title: "Detailed Schedule",
     description: "Hour-by-hour schedule for all 5 days with laboratory sessions, activity timings, and important information.",
-    format: "PDF · ~500 KB",
+    format: "PDF · ~840 KB",
     href: PLACEHOLDERS.SCHEDULE_LINK,
     color: "teal",
     emoji: "📅",
