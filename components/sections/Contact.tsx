@@ -137,44 +137,39 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Map placeholder */}
+          {/* Map */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="glass rounded-2xl border border-white/5 overflow-hidden h-full min-h-[400px] flex flex-col">
-              {/* Map embed placeholder */}
-              <div className="flex-1 bg-gradient-to-br from-sky-500/10 to-teal-500/10 flex flex-col items-center justify-center p-8 relative">
-                <div className="absolute inset-0 opacity-10" style={{
-                  backgroundImage: `
-                    linear-gradient(rgba(14,165,233,0.3) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(14,165,233,0.3) 1px, transparent 1px)
-                  `,
-                  backgroundSize: "30px 30px",
-                }} />
-                <div className="relative text-center">
-                  <div className="text-6xl mb-4">📍</div>
-                  <h3 className="text-white font-bold text-xl mb-2">Shobhit University</h3>
-                  <p className="text-slate-400 text-sm mb-1">NH-58, Modipuram Bypass</p>
-                  <p className="text-slate-400 text-sm mb-6">Meerut, Uttar Pradesh 250110</p>
-                  <motion.a
-                    href={PLACEHOLDERS.GOOGLE_MAPS_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-semibold rounded-full shadow-lg shadow-sky-500/30"
-                  >
-                    <MapPin className="w-4 h-4" />
-                    Open in Maps
-                    <ExternalLink className="w-4 h-4" />
-                  </motion.a>
-                </div>
+            <div className="glass rounded-2xl border border-white/5 overflow-hidden h-full flex flex-col">
+              {/* Google Maps embed */}
+              <div className="relative flex-1 min-h-[320px]">
+                <iframe
+                  src="https://maps.google.com/maps?q=Shobhit+University+NH-58+Modipuram+Meerut+Uttar+Pradesh&output=embed&z=15"
+                  className="w-full h-full min-h-[320px] border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shobhit University Location"
+                />
+                {/* Overlay button */}
+                <motion.a
+                  href={PLACEHOLDERS.GOOGLE_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-sky-500 to-teal-500 text-white font-semibold rounded-full shadow-lg shadow-sky-500/40 text-sm whitespace-nowrap"
+                >
+                  <MapPin className="w-4 h-4" />
+                  Open in Google Maps
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </motion.a>
               </div>
 
               {/* How to reach */}
-              <div className="p-6 border-t border-white/5">
+              <div className="p-5 border-t border-white/5">
                 <h4 className="text-white font-semibold mb-3 text-sm">How to Reach</h4>
                 <div className="space-y-2">
                   {[
@@ -187,6 +182,19 @@ export function Contact() {
                       <span>{text}</span>
                     </div>
                   ))}
+                  {/* NamoBharat RRTS */}
+                  <a
+                    href="https://namobharat.ncrtc.in/web/dashboard/home"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sky-400 hover:text-sky-300 text-xs transition-colors group"
+                  >
+                    <span>🚄</span>
+                    <span>
+                      NamoBharat RRTS (Rapid Rail) — Delhi–Meerut corridor
+                      <ExternalLink className="w-3 h-3 inline ml-1 opacity-60 group-hover:opacity-100" />
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>

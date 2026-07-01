@@ -82,7 +82,7 @@ export function Navigation() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.slice(0, 8).map(({ label, href }) => (
+            {NAV_LINKS.filter(({ label }) => label !== "Register").map(({ label, href }) => (
               <button
                 key={href}
                 onClick={() => handleNavClick(href)}

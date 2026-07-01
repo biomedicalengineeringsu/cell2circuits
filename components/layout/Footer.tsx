@@ -150,13 +150,38 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm text-center sm:text-left">
-            © {currentYear} {WORKSHOP.organizer}, {WORKSHOP.university}. All rights reserved.
-          </p>
-          <p className="text-slate-600 text-xs">
-            Crafted with ❤️ for future biomedical innovators
-          </p>
+        <div className="border-t border-white/5 pt-8 space-y-3">
+          {/* Quick contact strip */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <a
+              href={`mailto:${PLACEHOLDERS.EMAIL}`}
+              className="flex items-center gap-1.5 text-slate-500 hover:text-sky-400 text-xs transition-colors"
+            >
+              <Mail className="w-3 h-3 shrink-0" />
+              {PLACEHOLDERS.EMAIL}
+            </a>
+            {PHONES.map(({ label, number }) => (
+              <a
+                key={number}
+                href={`tel:${number.replace(/\D/g, "")}`}
+                className="flex items-center gap-1.5 text-slate-500 hover:text-sky-400 text-xs transition-colors"
+              >
+                <Phone className="w-3 h-3 shrink-0" />
+                <span className="text-[9px] font-bold text-sky-700 dark:text-sky-600 uppercase tracking-wide">
+                  {label === "University" ? "Univ" : "Coord"}
+                </span>
+                {number}
+              </a>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p className="text-slate-600 text-xs text-center sm:text-left">
+              © {currentYear} {WORKSHOP.organizer}, {WORKSHOP.university}. All rights reserved.
+            </p>
+            <p className="text-slate-600 text-xs">
+              Crafted with ❤️ for future biomedical innovators
+            </p>
+          </div>
         </div>
       </div>
     </footer>
