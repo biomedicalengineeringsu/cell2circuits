@@ -8,6 +8,7 @@ import { Schedule } from "@/components/sections/Schedule";
 import { Laboratories } from "@/components/sections/Laboratories";
 import { Highlights } from "@/components/sections/Highlights";
 import { CareerExplorer } from "@/components/sections/CareerExplorer";
+import { PlacedStudents } from "@/components/sections/PlacedStudents";
 import { DayInLife } from "@/components/sections/DayInLife";
 import { Statistics } from "@/components/sections/Statistics";
 import { Gallery } from "@/components/sections/Gallery";
@@ -31,6 +32,7 @@ export default function Home() {
       <Highlights />
       <Statistics />
       <CareerExplorer />
+      <PlacedStudents />
       <DayInLife />
       <Gallery />
       <Registration />
