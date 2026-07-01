@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { PLACEHOLDERS, WORKSHOP } from "@/lib/constants";
-import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
+import { PLACEHOLDERS, WORKSHOP, SOCIAL_LINKS } from "@/lib/constants";
+import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 
 const contactInfo = [
   {
@@ -127,9 +127,10 @@ export function Contact() {
               <h3 className="text-white font-semibold mb-4">Follow Us</h3>
               <div className="flex gap-3">
                 {[
-                  { Icon: FaLinkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-400" },
-                  { Icon: FaInstagram, href: "#", label: "Instagram", color: "hover:text-pink-400" },
-                  { Icon: FaYoutube, href: "#", label: "YouTube", color: "hover:text-red-400" },
+                  { Icon: FaLinkedin,  href: SOCIAL_LINKS.LINKEDIN,  label: "LinkedIn",  color: "hover:text-blue-400"  },
+                  { Icon: FaInstagram, href: SOCIAL_LINKS.INSTAGRAM, label: "Instagram", color: "hover:text-pink-400"  },
+                  { Icon: FaYoutube,   href: SOCIAL_LINKS.YOUTUBE,   label: "YouTube",   color: "hover:text-red-400"   },
+                  { Icon: FaFacebook,  href: SOCIAL_LINKS.FACEBOOK,  label: "Facebook",  color: "hover:text-blue-500"  },
                 ].map(({ Icon, href, label, color: c }) => (
                   <motion.a
                     key={label}

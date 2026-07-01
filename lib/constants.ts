@@ -21,6 +21,13 @@ export const PLACEHOLDERS = {
   PHONE: "+91-121-2575091",
 };
 
+export const SOCIAL_LINKS = {
+  INSTAGRAM: "https://www.instagram.com/sbhs_subiomedical?utm_source=qr&igsh=MWpnMHYwMTZkbWF5cA==",
+  YOUTUBE:   "https://www.youtube.com/@BMHSShobhitUniversity",
+  LINKEDIN:  "https://in.linkedin.com/in/biomedical-engineering-795505220",
+  FACEBOOK:  "https://www.facebook.com/people/Shobhit-Biomedical-Society/100064063866563/?sk=photos",
+};
+
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#welcome" },

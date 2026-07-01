@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Dna, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
-import { FaLinkedin, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
+import { SOCIAL_LINKS } from "@/lib/constants";
 import { PLACEHOLDERS, WORKSHOP } from "@/lib/constants";
 
 export function Footer() {
@@ -80,10 +81,10 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex items-center gap-4 mt-6">
               {[
-                { Icon: FaLinkedin, href: "#", label: "LinkedIn" },
-                { Icon: FaInstagram, href: "#", label: "Instagram" },
-                { Icon: FaYoutube, href: "#", label: "YouTube" },
-                { Icon: FaTwitter, href: "#", label: "Twitter" },
+                { Icon: FaLinkedin,  href: SOCIAL_LINKS.LINKEDIN,  label: "LinkedIn" },
+                { Icon: FaInstagram, href: SOCIAL_LINKS.INSTAGRAM, label: "Instagram" },
+                { Icon: FaYoutube,   href: SOCIAL_LINKS.YOUTUBE,   label: "YouTube" },
+                { Icon: FaFacebook,  href: SOCIAL_LINKS.FACEBOOK,  label: "Facebook" },
               ].map(({ Icon, href, label }) => (
                 <motion.a
                   key={label}
