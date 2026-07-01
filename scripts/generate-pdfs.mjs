@@ -1,37 +1,18 @@
 import puppeteer from "puppeteer-core";
-import { writeFileSync, mkdirSync } from "fs";
+import { readFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = join(__dirname, "..", "public", "downloads");
+const OUT_DIR  = join(__dirname, "..", "public", "downloads");
+const PUB_DIR  = join(__dirname, "..", "public");
 mkdirSync(OUT_DIR, { recursive: true });
 
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
-// ─── University Logo SVG (inline, no external file needed) ───────────────────
-const LOGO_SVG = `
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="32" cy="32" r="30" fill="#1a3a6e" stroke="#c8a535" stroke-width="3"/>
-  <circle cx="32" cy="32" r="24" fill="none" stroke="#c8a535" stroke-width="1"/>
-  <text x="32" y="22" font-family="serif" font-size="7" font-weight="bold" fill="#c8a535" text-anchor="middle">SHOBHIT</text>
-  <text x="32" y="30" font-family="serif" font-size="5.5" fill="#ffffff" text-anchor="middle">DEEMED TO BE</text>
-  <text x="32" y="37" font-family="serif" font-size="5.5" fill="#ffffff" text-anchor="middle">UNIVERSITY</text>
-  <path d="M16,42 Q32,48 48,42" fill="none" stroke="#c8a535" stroke-width="1.5"/>
-  <text x="32" y="52" font-family="serif" font-size="4.5" fill="#c8a535" text-anchor="middle">Est. 2000</text>
-</svg>`;
-
-const LOGO_DATA = `data:image/svg+xml;base64,${Buffer.from(LOGO_SVG).toString("base64")}`;
-
-// ─── NAAC Badge SVG ──────────────────────────────────────────────────────────
-const NAAC_SVG = `
-<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="24" cy="24" r="22" fill="#ff6b00" stroke="#cc4400" stroke-width="2"/>
-  <text x="24" y="18" font-family="Arial" font-size="7" font-weight="bold" fill="white" text-anchor="middle">NAAC</text>
-  <text x="24" y="28" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">A</text>
-  <text x="24" y="38" font-family="Arial" font-size="5" fill="white" text-anchor="middle">ACCREDITED</text>
-</svg>`;
-const NAAC_DATA = `data:image/svg+xml;base64,${Buffer.from(NAAC_SVG).toString("base64")}`;
+// ─── Real logo images as base64 data URIs ────────────────────────────────────
+const LOGO_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-logo.png")).toString("base64")}`;
+const NAAC_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "naac-logo.png")).toString("base64")}`;
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const BASE_CSS = `
@@ -46,31 +27,52 @@ const BASE_CSS = `
 
   /* ── Header ── */
   .header {
-    background: linear-gradient(135deg, #0d2353 0%, #1a3a6e 50%, #0d2353 100%);
+    background: linear-gradient(135deg, #0d2353 0%, #1a3a6e 60%, #0d2353 100%);
     color: white;
-    padding: 18px 30px;
+    padding: 16px 28px;
     display: flex;
     align-items: center;
-    gap: 18px;
-    border-bottom: 4px solid #c8a535;
+    gap: 20px;
+    border-bottom: 5px solid #c8a535;
     page-break-inside: avoid;
   }
-  .header-logos { display: flex; align-items: center; gap: 14px; }
-  .header-logo-img { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #c8a535; }
-  .header-naac-img { width: 48px; height: 48px; }
+  .header-logo-img {
+    height: 76px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  }
+  .header-naac-img {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+  }
   .header-text { flex: 1; text-align: center; }
   .header-univ-name {
-    font-size: 18px; font-weight: 800; letter-spacing: 2px;
+    font-size: 22px; font-weight: 900; letter-spacing: 3px;
     color: #c8a535; text-transform: uppercase;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-family: Georgia, 'Times New Roman', serif;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    margin-bottom: 3px;
   }
-  .header-sub { font-size: 10px; color: #b0c4de; letter-spacing: 0.8px; margin-top: 2px; }
+  .header-sub {
+    font-size: 10.5px; color: #c8d8ee; letter-spacing: 0.5px; margin-top: 2px;
+  }
   .header-school {
-    font-size: 12px; font-weight: 700; color: #ffffff;
-    margin-top: 5px; letter-spacing: 0.5px;
+    font-size: 14px; font-weight: 800; color: #ffffff;
+    margin-top: 6px; letter-spacing: 0.4px;
+    font-family: 'Segoe UI', Arial, sans-serif;
   }
-  .header-designated {
-    font-size: 9px; color: #c8a535; margin-top: 3px; font-style: italic;
+  .header-address {
+    font-size: 9.5px; color: #c8a535; margin-top: 4px;
+    font-style: italic; letter-spacing: 0.3px;
+  }
+  .header-divider {
+    width: 60%; height: 1px; background: rgba(200,165,53,0.4);
+    margin: 5px auto 0;
   }
 
   /* ── Document title banner ── */
@@ -219,18 +221,15 @@ const BASE_CSS = `
 function universityHeader(docTitle, docSubtitle) {
   return `
     <div class="header">
-      <div class="header-logos">
-        <img class="header-logo-img" src="${LOGO_DATA}" alt="Shobhit University Logo"/>
-      </div>
+      <img class="header-logo-img" src="${LOGO_DATA}" alt="Shobhit University Logo"/>
       <div class="header-text">
         <div class="header-univ-name">Shobhit University</div>
         <div class="header-sub">Shobhit Institute of Engineering &amp; Technology (Deemed-to-be University)</div>
+        <div class="header-divider"></div>
         <div class="header-school">School of Biomedical Engineering &amp; Health Sciences</div>
-        <div class="header-designated">NH-58, Modipuram, Meerut – 250110, Uttar Pradesh, India</div>
+        <div class="header-address">NH-58, Modipuram, Meerut – 250110, Uttar Pradesh, India</div>
       </div>
-      <div class="header-logos">
-        <img class="header-naac-img" src="${NAAC_DATA}" alt="NAAC A"/>
-      </div>
+      <img class="header-naac-img" src="${NAAC_DATA}" alt="NAAC A Grade"/>
     </div>
     <div class="doc-title-bar">
       <h1>${docTitle}</h1>
