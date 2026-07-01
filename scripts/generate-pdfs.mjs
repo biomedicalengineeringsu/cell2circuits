@@ -11,29 +11,92 @@ mkdirSync(OUT_DIR, { recursive: true });
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
 // ─── Real logo images as base64 data URIs ────────────────────────────────────
-const BANNER_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-banner-logo.png")).toString("base64")}`;
+// Use the high-res separate logos (381×144 and 144×126) — not the low-res
+// 300×78 banner which blurs when stretched across A4 width.
+const LOGO_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "su-logo.png")).toString("base64")}`;
+const NAAC_DATA = `data:image/png;base64,${readFileSync(join(PUB_DIR, "naac-logo.png")).toString("base64")}`;
 
 // ─── Shared styles ────────────────────────────────────────────────────────────
 const BASE_CSS = `
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
     color: #1a2332;
     background: #fff;
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: 11.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* ── Header ── */
+  /* ══════════════════════════════════════════
+     HEADER  — matches the green university banner
+     ══════════════════════════════════════════ */
   .header {
     page-break-inside: avoid;
-    border-bottom: 3px solid #1a4d2e;
+    border-bottom: 5px solid #c8a535;
   }
-  .header-banner {
-    width: 100%;
-    height: auto;
-    display: block;
+
+  /* Top row: green banner with logo + text + NAAC */
+  .header-top {
+    background: linear-gradient(135deg, #145a32 0%, #1e8449 40%, #145a32 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    gap: 12px;
+    border-bottom: 2px solid #0b3d20;
   }
+
+  /* University logo (left) — displayed at native scale, never upsampled */
+  .header-logo {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Center text column */
+  .header-center {
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .header-univ {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .header-univ-gold {
+    color: #fdd835;
+  }
+  .header-tagline {
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  /* NAAC badge (right) */
+  .header-naac {
+    height: 68px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* School name bar below green header */
   .header-school-bar {
     background: #0d2353;
     color: #ffffff;
@@ -41,14 +104,11 @@ const BASE_CSS = `
     padding: 7px 24px;
     font-size: 13px;
     font-weight: 800;
-    letter-spacing: 0.8px;
+    letter-spacing: 1px;
     font-family: 'Segoe UI', Arial, sans-serif;
-    border-top: 1px solid rgba(200,165,53,0.3);
-    border-bottom: 4px solid #c8a535;
+    border-bottom: 3px solid #c8a535;
   }
-  .header-school-bar span {
-    color: #c8a535;
-  }
+  .header-school-bar .gold { color: #fdd835; }
 
   /* ── Document title banner ── */
   .doc-title-bar {
@@ -76,7 +136,7 @@ const BASE_CSS = `
   .workshop-strip span { display: flex; align-items: center; gap: 5px; }
 
   /* ── Content area ── */
-  .content { padding: 20px 30px; }
+  .content { padding: 18px 28px 24px; }
 
   /* ── Section headings ── */
   .section-title {
@@ -196,11 +256,24 @@ const BASE_CSS = `
 function universityHeader(docTitle, docSubtitle) {
   return `
     <div class="header">
-      <img class="header-banner" src="${BANNER_DATA}" alt="Shobhit University"/>
+      <!-- Green university banner row -->
+      <div class="header-top">
+        <img class="header-logo" src="${LOGO_DATA}" alt="Shobhit University"/>
+        <div class="header-center">
+          <div class="header-univ">
+            <span class="header-univ-gold">Shobhit</span> University
+          </div>
+          <div class="header-tagline">
+            Shobhit Institute of Engineering &amp; Technology &nbsp;·&nbsp; Deemed-to-be University (Est. 2000)
+          </div>
+        </div>
+        <img class="header-naac" src="${NAAC_DATA}" alt="NAAC A Grade Accredited"/>
+      </div>
+      <!-- Navy school bar -->
       <div class="header-school-bar">
         School of Biomedical Engineering &amp; Health Sciences
-        &nbsp;|&nbsp;
-        <span>NH-58, Modipuram, Meerut – 250110, Uttar Pradesh</span>
+        &nbsp;<span class="gold">|</span>&nbsp;
+        NH-58, Modipuram, Meerut – 250110, Uttar Pradesh
       </div>
     </div>
     <div class="doc-title-bar">
@@ -613,31 +686,36 @@ async function main() {
   const browser = await puppeteer.launch({
     executablePath: EDGE_PATH,
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"],
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-gpu",
+      "--font-render-hinting=none",   // sharper font rendering
+    ],
   });
 
   const page = await browser.newPage();
 
+  // High-DPI viewport: A4 at ~150 DPI → 1240 × 1754 px, scale ×2 for crisp images
+  await page.setViewport({ width: 1240, height: 1754, deviceScaleFactor: 2 });
+
+  const PDF_OPTIONS = {
+    format: "A4",
+    printBackground: true,
+    margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
+    // Page content already has internal padding; header/footer are full-bleed
+  };
+
   // ── Schedule PDF ──
   console.log("Generating Detailed Schedule PDF…");
   await page.setContent(scheduleHTML(), { waitUntil: "domcontentloaded", timeout: 60000 });
-  await page.pdf({
-    path: join(OUT_DIR, "schedule.pdf"),
-    format: "A4",
-    margin: { top: "0", right: "0", bottom: "0", left: "0" },
-    printBackground: true,
-  });
+  await page.pdf({ ...PDF_OPTIONS, path: join(OUT_DIR, "schedule.pdf") });
   console.log("✓  schedule.pdf saved");
 
   // ── Preparation Guide PDF ──
   console.log("Generating Preparation Guide PDF…");
   await page.setContent(prepGuideHTML(), { waitUntil: "domcontentloaded", timeout: 60000 });
-  await page.pdf({
-    path: join(OUT_DIR, "preparation-guide.pdf"),
-    format: "A4",
-    margin: { top: "0", right: "0", bottom: "0", left: "0" },
-    printBackground: true,
-  });
+  await page.pdf({ ...PDF_OPTIONS, path: join(OUT_DIR, "preparation-guide.pdf") });
   console.log("✓  preparation-guide.pdf saved");
 
   await browser.close();
