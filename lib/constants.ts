@@ -18,11 +18,11 @@ export const PLACEHOLDERS = {
   CAMPUS_MAP_LINK: "/downloads/campus-map.pdf",
   GOOGLE_MAPS_LINK: "https://maps.google.com/?q=Shobhit+University+Meerut",
   EMAIL: "mail@shobhituniversity.ac.in",
-  PHONE: "+91-121-2575091",
+  PHONE: "+91-90684-83838",
 };
 
 export const PHONES = [
-  { label: "University",   number: "+91-121-2575091"  },
+  { label: "University",   number: "+91-90684-83838"  },
   { label: "Coordinator",  number: "+91-96349-36278"  },
   { label: "Coordinator",  number: "+91-90450-04325"  },
   { label: "Coordinator",  number: "+91-63933-92333"  },
@@ -34,7 +34,7 @@ export const EMAILS = [
 ];
 
 export const SOCIAL_LINKS = {
-  INSTAGRAM: "https://www.instagram.com/sbhs_subiomedical?utm_source=qr&igsh=MWpnMHYwMTZkbWF5cA==",
+  INSTAGRAM: "https://www.instagram.com/bme_shobhit/",
   YOUTUBE:   "https://www.youtube.com/@BMHSShobhitUniversity",
   LINKEDIN:  "https://in.linkedin.com/in/biomedical-engineering-795505220",
   FACEBOOK:  "https://www.facebook.com/people/Shobhit-Biomedical-Society/100064063866563/?sk=photos",
