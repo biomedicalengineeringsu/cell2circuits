@@ -54,7 +54,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6 max-w-sm">
-              A 5-Day immersive biomedical engineering experience that bridges the world of biology and technology â€” from living cells to intelligent circuits.
+              A 5-Day immersive biomedical engineering experience that bridges the world of biology and technology &mdash; from living cells to intelligent circuits.
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3 text-slate-400 text-sm">
